@@ -60,7 +60,7 @@ services:
       - phpfpm:main_phpfpm
     volumes:
       - "./www/${BLOG_TYPE}:/var/www/html:rw"
-      - "./nginx/wordpress:/etc/nginx/conf.d"
+      - "./nginx:/etc/nginx/conf.d"
       - "./nginx/cert/${DOMAIN_NAME}:/etc/nginx/conf.d/cert"
     networks:
       - fly_bridge
