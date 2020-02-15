@@ -32,9 +32,9 @@ services:
     cap_add:
       - SYS_PTRACE
     volumes:
-      - ./www:/var/www/html
+      - ./www/${BLOG_TYPE}:/var/www/html:rw
       - ./phpfpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
-      - ./phpfpm/log:/var/log
+      - ./phpfpm/log:/var/log:rw
       - ./phpfpm/php.ini:/usr/local/etc/php/php.ini
     links:
       - mysql:main_mysql
@@ -59,7 +59,7 @@ services:
       - v2ray
       - phpfpm:main_phpfpm
     volumes:
-      - "./www:/var/www/html"
+      - "./www/${BLOG_TYPE}:/var/www/html:rw"
       - "./nginx/wordpress:/etc/nginx/conf.d"
       - "./nginx/cert/${DOMAIN_NAME}:/etc/nginx/conf.d/cert"
     networks:
