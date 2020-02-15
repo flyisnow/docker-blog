@@ -12,18 +12,19 @@ BLOG_TYPE=wordpress  #只能选择wordpress 、typecho
 ```
 ## 下载blog程序
 运行www目录下的对应脚本```getWordpress.sh```,或者```getTypecho.sh```,下载对应的blog程序
-
+```
+sh +x getWordpress.sh
+```
 ## 修改nginx配置
-#### 将文件```nginx/domain.conf```重命名为```nginx/<域名>.conf```,编辑里面的内容，将```<domain_name>```替换为自己的域名
-#### 修改文件```nginx/ssl.conf```，将```<domain_name>```替换为自己的域名
+将文件```nginx/domain.conf```重命名为```nginx/<域名>.conf```,编辑里面的内容，将```<domain_name>```替换为自己的域名
+修改文件```nginx/ssl.conf```，将```<domain_name>```替换为自己的域名
 
 ## 运行docker-compose
 ### 在当前目录下运行```docker-compose up -d```
 ### 进入mysql容器，创建数据库并授权：
 ```
-docker-compose exec mysql bash  #进入容器
-#以下在容器中运行
-mysql -uroot -p123456  #进入mysql
+docker-compose exec mysql mysql -uroot -p123456  #进入容器mysql
+
 #在mysql中运行
 create database wordpress;   #wordpress为要创建的数据库，可以自定义，记住，后面需要在blog初始化时用到;
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;  #授权远程访问
@@ -39,6 +40,7 @@ docker-compose exec acme.sh  --issue --dns dns_cf -d <domain_name> #此处要改
 docker-compose restart nginx  
 ```
 ## 访问网页，配置数据
+
 
 ## 修改wp-config.php,配置临时目录
 找到最后几行，在此处代码下增加配置
