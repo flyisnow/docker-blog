@@ -2,6 +2,7 @@
 A docker-compose configure for how to build my blog by using typecho or wordpress
 以下配置修改假设域名为defn.win
 
+
 ## 修改.env文件
 ```
 DOMAIN_NAME=<域名>  #此处改为自己的域名

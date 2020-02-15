@@ -11,7 +11,7 @@
 			"settings": {
 				"clients": [
 					{
-						"id": "676177b0-06aa-4fff-b05e-8da909a973d3",
+						"id": "676177b0-06aa-4eee-b05e-8da909a973d3",
 						"level": 1,
 						"alterId": 233
 					}
@@ -20,7 +20,7 @@
 			"streamSettings": {
 				"network": "ws",
         "wsSettings": {
-        "path": "/report"
+        "path": "/secretUrl"
         }
 			},
 			"sniffing": {
