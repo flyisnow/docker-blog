@@ -1,7 +1,7 @@
 # docker-blog
 A docker-compose configure for how to build my blog by using typecho or wordpress
-以下配置修改假设域名为defn.win
 
+以下配置修改假设域名为defn.win
 
 ## 修改.env文件
 ```
