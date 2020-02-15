@@ -1,0 +1,75 @@
+version: "3"
+services:
+  acme.sh:
+    image: neilpang/acme.sh
+    container_name: acme.sh
+    restart: always
+    command: daemon
+    environment:
+      - CF_Key=${CF_Key}
+      - CF_Email=${CF_Email}
+    volumes:
+      - ./nginx/cert:/acme.sh
+    network_mode: host
+  mysql:
+    image: mysql:5.7
+    container_name: main_mysql
+    restart: always
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf:/etc/mysql
+      - ./mysql/logs:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+    networks:
+      - fly_bridge
+
+  phpfpm:
+    image: flyphp:7.2-fpm
+    build: ./phpfpmDocker
+    container_name: main_phpfpm
+    restart: always
+    cap_add:
+      - SYS_PTRACE
+    volumes:
+      - ./www:/var/www/html
+      - ./phpfpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
+      - ./phpfpm/log:/var/log
+      - ./phpfpm/php.ini:/usr/local/etc/php/php.ini
+    links:
+      - mysql:main_mysql
+    networks:
+      - fly_bridge
+  v2ray:
+    image: v2ray/official:latest
+    container_name: v2ray
+    restart: always
+    volumes:
+      - "./v2ray/config.json:/etc/v2ray/config.json"
+    networks:
+      - fly_bridge
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+  nginx:
+    image: nginx:1.16.1
+    container_name: main_nginx
+    links:
+      - v2ray
+      - phpfpm:main_phpfpm
+    volumes:
+      - "./www:/var/www/html"
+      - "./nginx/wordpress:/etc/nginx/conf.d"
+      - "./nginx/cert/${DOMAIN_NAME}:/etc/nginx/conf.d/cert"
+    networks:
+      - fly_bridge
+    ports:
+      - "443:443"
+      - "80:80"
+
+
+
+networks:
+  fly_bridge:
+    external: true
