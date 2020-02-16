@@ -11,6 +11,10 @@ services:
     volumes:
       - ./nginx/cert:/acme.sh
     network_mode: host
+    logging: 
+      driver: “json-file” 
+      options: 
+        max-size: “5m” 
   mysql:
     image: mysql:5.7
     container_name: main_mysql
@@ -23,7 +27,10 @@ services:
       MYSQL_ROOT_PASSWORD: "123456"
     networks:
       - fly_bridge
-
+    logging: 
+      driver: “json-file” 
+      options: 
+        max-size: “200m” 
   phpfpm:
     image: flyphp:7.2-fpm
     build: ./phpfpmDocker
@@ -40,6 +47,10 @@ services:
       - mysql:main_mysql
     networks:
       - fly_bridge
+    logging: 
+      driver: “json-file” 
+      options: 
+        max-size: “500m” 
   v2ray:
     image: v2ray/official:latest
     container_name: v2ray
@@ -52,6 +63,10 @@ services:
       nofile:
         soft: 65536
         hard: 65536
+    logging: 
+      driver: “json-file” 
+      options: 
+        max-size: “20m” 
   nginx:
     image: nginx:1.16.1
     container_name: main_nginx
@@ -67,6 +82,10 @@ services:
     ports:
       - "443:443"
       - "80:80"
+    logging: 
+      driver: “json-file” 
+      options: 
+        max-size: “100m” 
 
 
 
