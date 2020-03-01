@@ -64,9 +64,9 @@ services:
         soft: 65536
         hard: 65536
     logging: 
-      driver: “json-file” 
+      driver: "json-file"
       options: 
-        max-size: “20m” 
+        max-size: "20m"
   nginx:
     image: nginx:1.16.1
     container_name: main_nginx
