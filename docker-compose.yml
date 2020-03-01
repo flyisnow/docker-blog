@@ -48,7 +48,7 @@ services:
     networks:
       - fly_bridge
     logging: 
-      driver: “json-file” 
+      driver: "json-file" 
       options: 
         max-size: “500m” 
   v2ray:
