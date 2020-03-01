@@ -1,3 +1,8 @@
+
+#2020-03-01更新
+将之前的步骤封装成向导脚本，直接运行```./guide.sh```,根据提示内容正确填写即可。
+
+#以下仅做参考，可以单独使用，新手建议直接运行```guide.sh```脚本。
 # docker-blog
 A docker-compose configure for how to build my blog by using typecho or wordpress
 
