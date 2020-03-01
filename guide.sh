@@ -9,9 +9,15 @@ echo "CF_Key=" $CF_Key
 echo "CF_Email=" $CF_Email
 echo "Blog_Type=" $Blog_Type
 
+echo "create config files"
 sed "s/\<domain_name\>/$domainName/g" ./nginx/domain.conf.template  > ./nginx/domain.conf
 sed "s/\<domain_name\>/$domainName/g" ./nginx/ssl.config.template  > ./nginx/ssl.config
 sed -e "s/\<domain_name\>/$domainName/g" -e "s/\<CF_Key\>/$CF_Key/g" -e "s/\<CF_Email\>/$CF_Email/g" -e "s/\<Blog_Type\>/$Blog_Type/g" ./.env.Template >./.env  
+
+
+echo "download blog "
+sh +x ./www/get$Blog_Type.sh
+
 
 echo "create docker bridge"
 docker network create fly_bridge
