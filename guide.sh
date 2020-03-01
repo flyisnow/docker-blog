@@ -16,7 +16,7 @@ sed -e "s/\<domain_name\>/$domainName/g" -e "s/\<CF_Key\>/$CF_Key/g" -e "s/\<CF_
 
 
 echo "download blog "
-sh +x ./www/get$Blog_Type.sh
+sh +x ./www/get${Blog_Type^}.sh
 
 
 echo "create docker bridge"
