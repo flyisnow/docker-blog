@@ -12,9 +12,9 @@ services:
       - ./nginx/cert:/acme.sh
     network_mode: host
     logging: 
-      driver: “json-file” 
+      driver: "json-file"
       options: 
-        max-size: “5m” 
+        max-size: "5m"
   mysql:
     image: mysql:5.7
     container_name: main_mysql
@@ -28,9 +28,9 @@ services:
     networks:
       - fly_bridge
     logging: 
-      driver: “json-file” 
+      driver: "json-file"
       options: 
-        max-size: “200m” 
+        max-size: "200m"
   phpfpm:
     image: flyphp:7.2-fpm
     build: ./phpfpmDocker
@@ -50,7 +50,7 @@ services:
     logging: 
       driver: "json-file" 
       options: 
-        max-size: “500m” 
+        max-size: "50m"
   v2ray:
     image: v2ray/official:latest
     container_name: v2ray
@@ -83,9 +83,9 @@ services:
       - "443:443"
       - "80:80"
     logging: 
-      driver: “json-file” 
+      driver: "json-file"
       options: 
-        max-size: “100m” 
+        max-size: "100m"
 
 
 
