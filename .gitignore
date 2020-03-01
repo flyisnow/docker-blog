@@ -1,2 +1,6 @@
 .DS_Store
+.env
+nginx/domain.conf
+nginx/ssl.config
+.envTemplate
 
